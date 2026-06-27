@@ -1,8 +1,6 @@
 package com.finance.Wallet_Test.entity;
 
 
-import com.finance.Wallet_Test.enums.AccountRole;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
