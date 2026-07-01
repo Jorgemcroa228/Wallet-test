@@ -10,7 +10,7 @@ import lombok.Data;
 public class EmailResponseDTO {
     @JsonProperty("id") 
     private String id; 
-  
+    
     @JsonProperty("message") 
     private String message; 
 }
