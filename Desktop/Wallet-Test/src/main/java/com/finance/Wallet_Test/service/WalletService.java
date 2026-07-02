@@ -1,5 +1,7 @@
 package com.finance.Wallet_Test.service;
 
+import java.math.BigDecimal;
+
 import org.springframework.stereotype.Service;
 
 import com.finance.Wallet_Test.dto.request.RechargeRequestDTO;
@@ -46,4 +48,9 @@ public class WalletService {
                 .orElseThrow(() -> new ClienteNoEncontradoException(
                         "El cliente no tiene una billetera asociada."));
   }
+
+  public void acreditar(WalletEntity wallet, BigDecimal valor) {
+        wallet.setBalance(wallet.getBalance().add(valor));
+        walletRepository.save(wallet);
+    }
 }
