@@ -26,6 +26,24 @@ public class WalletService {
 
     certify (wallet, request.getValor());
 
-    log.info("Succesfull recharge. documento={} valor={}");
+    log.info("Succesfull recharge. documento={} valor={}", request.getDocument, request.getValor());
+
+    return WalletResponseDTO.builder()
+                .idWallet(wallet.getIdWallet())
+                .user(user.getIdUser())
+                .balance(wallet.getBalance())
+                .build();
+  }
+
+  public UsersEntity buscarCliente(String documento, String celular) {
+        return usersRepository.findByDocumentAndPhone(documento, celular)
+                .orElseThrow(() -> new ClienteNoEncontradoException(
+                        "No se encontró un cliente con el documento y celular indicados."));
+  }
+
+  public WalletEntity buscarWallet(UsersEntity cliente) {
+        return walletRepository.findByUser(cliente)
+                .orElseThrow(() -> new ClienteNoEncontradoException(
+                        "El cliente no tiene una billetera asociada."));
   }
 }
